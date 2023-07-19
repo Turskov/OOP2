@@ -1,6 +1,11 @@
 package ru.netology.services;
 
 public class Radio {
+
+    private final int minVolume = 0;
+    private final int maxVolume = 100;
+    private final int minRadioStation = 0;
+    private final int maxRadioStation = 9;
     private int currentVolume;
     private int currentRadioStation;
 
@@ -9,23 +14,23 @@ public class Radio {
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentVolume > 100) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
         currentVolume = newCurrentVolume;
     }
 
     public void increaseVolume() { //Увеличить громкость
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         }
     }
 
     public void turnDownVolume() { //Уменьшить громкость
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
     }
@@ -35,17 +40,17 @@ public class Radio {
     }
 
     public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 0) {
+        if (newCurrentRadioStation < minRadioStation) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (newCurrentRadioStation > maxRadioStation) {
             return;
         }
         currentRadioStation = newCurrentRadioStation;
     }
 
     public void nextRadioStation() { //Следующая радиостанция
-        if (currentRadioStation < 9) {
+        if (currentRadioStation < maxRadioStation) {
             currentRadioStation = currentRadioStation + 1;
         } else {
             currentRadioStation = 0;
@@ -53,10 +58,10 @@ public class Radio {
     }
 
     public void prevRadioStation() { //Предыдущая радиостанция
-        if (currentRadioStation > 0) {
+        if (currentRadioStation > minRadioStation) {
             currentRadioStation = currentRadioStation - 1;
         } else {
-            currentRadioStation = 9;
+            currentRadioStation = maxRadioStation;
         }
     }
 }
